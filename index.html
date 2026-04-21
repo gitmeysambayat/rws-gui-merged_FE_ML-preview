@@ -398,10 +398,13 @@
   #feOutputCard table td, #feOutputCard table th{ padding:5px 5px; }
   #feOutputCard table td, #feOutputCard table th{ text-align:left; }
   #feOutputCard{ margin-top:0; }
-  #feOutputCard table.twoCol{ table-layout:fixed; width:100%; }
-  #feOutputCard table.twoCol td.labelCell{ color:var(--muted); width:8.5%; font-size:10.2px; }
-  #feOutputCard table.twoCol td.valCell{ text-align:right; white-space:nowrap; width:11.5%; font-size:10.4px; }
+  #feOutputCard table.twoCol{ table-layout:fixed; width:100%; border-collapse:collapse; }
+  #feOutputCard table.twoCol td{ padding:3px 4px; line-height:1.15; vertical-align:top; }
+  #feOutputCard table.twoCol td.labelCell{ color:var(--muted); width:7%; font-size:9.6px; padding-right:3px; }
+  #feOutputCard table.twoCol td.valCell{ text-align:right; white-space:nowrap; width:9.666%; font-size:10.2px; padding-left:2px; padding-right:8px; border-right:1px solid var(--line2); }
+  #feOutputCard table.twoCol tr td:last-child{ border-right:none; }
   #feOutputCard table.twoCol td.valCell.warn{ color:#b00020; font-weight:700; }
+  #btnPng{ display:none !important; }
   #benchSummaryCard{ padding:8px 10px; }
   .benchSummaryGrid{ display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; align-items:stretch; }
   .benchMetric{ border:1px solid var(--line2); border-radius:10px; background:rgba(15,23,42,0.02); padding:6px 8px; display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:34px; }
@@ -1190,7 +1193,7 @@
     ];
 
     let html = '';
-    const outputPairsPerRow = 5;
+    const outputPairsPerRow = 6;
     for (let i = 0; i < out.length; i += outputPairsPerRow) {
       const rowItems = out.slice(i, i + outputPairsPerRow);
       html += '<tr>';
@@ -2522,7 +2525,7 @@
     const W = el.svg.viewBox.baseVal.width || el.svg.clientWidth;
     const H = el.svg.viewBox.baseVal.height || el.svg.clientHeight;
 
-    const margin = {left:68, right:18, top:36, bottom:50};
+    const margin = {left:104, right:24, top:42, bottom:88};
     const innerW = W - margin.left - margin.right;
     const innerH = H - margin.top - margin.bottom;
 
@@ -2630,9 +2633,9 @@
       const x = xScale(xt);
       const t = svgEl('text', {
         x:x,
-        y: margin.top + innerH + 16,
+        y: margin.top + innerH + 28,
         'text-anchor':'middle',
-        'font-size':'12',
+        'font-size':'24',
         fill:'rgba(15,23,42,0.75)'
       });
       t.textContent = (xt === 0) ? '0' : xt.toFixed(2);
@@ -2641,20 +2644,20 @@
 
     const xLab = svgEl('text', {
       x: margin.left + innerW/2,
-      y: margin.top + innerH + 32,
+      y: margin.top + innerH + 62,
       'text-anchor':'middle',
-      'font-size':'13',
+      'font-size':'26',
       fill:'rgba(15,23,42,0.9)'
     });
     xLab.textContent = 'Rotation (rad)';
     g.appendChild(xLab);
 
     const yLab = svgEl('text', {
-      x: 16,
+      x: 34,
       y: margin.top + innerH/2,
-      transform: `rotate(-90 16 ${margin.top + innerH/2})`,
+      transform: `rotate(-90 34 ${margin.top + innerH/2})`,
       'text-anchor':'middle',
-      'font-size':'13',
+      'font-size':'26',
       fill:'rgba(15,23,42,0.9)'
     });
     yLab.textContent = 'Moment (kN·m)';
@@ -2664,9 +2667,9 @@
       const y = yScale(yt);
       const t = svgEl('text', {
         x: margin.left - 8,
-        y: y + 4,
+        y: y + 7,
         'text-anchor':'end',
-        'font-size':'12',
+        'font-size':'24',
         fill:'rgba(15,23,42,0.75)'
       });
       t.textContent = yt.toFixed(0);
@@ -3000,7 +3003,7 @@
     drawPlot();
   });
   el.btnSvg.addEventListener('click', exportSvg);
-  el.btnPng.addEventListener('click', () => exportPng(3));
+  if (el.btnPng) el.btnPng.addEventListener('click', () => exportPng(3));
   if (el.btnMlBench) el.btnMlBench.addEventListener('click', runFullMlBenchmark);
   if (el.btnShowFe) el.btnShowFe.addEventListener('click', toggleFeCurve);
   if (el.btnShowMl) el.btnShowMl.addEventListener('click', toggleMlCurve);
