@@ -416,7 +416,7 @@
 <header>
   <div class="headerRow">
     <div class="titleWrap">
-      <div class="title">Interactive FE database interrogation and explainable ML backbone prediction for circular Reduced Web Section connections with isolated circular web openings (7,575 FE models).</div>
+      <div class="title">Interactive FE database interrogation and ML backbone prediction for circular Reduced Web Section connections with isolated circular web openings (7,575 FE models).</div>
       <div class="metaLine">Research and development: Meysam Bayat under supervision of Professor Konstantinos Daniel Tsavdaridis at City St George’s, University of London. For further information refer to Bayat and Tsavdaridis (2025-2026) <a href="https://doi.org/10.3389/fbuil.2025.1592665" target="_blank" rel="noopener">[1]</a> <a href="https://doi.org/10.1002/cepa.70170" target="_blank" rel="noopener">[2]</a> <a href="https://doi.org/10.21203/rs.3.rs-8506924/v1" target="_blank" rel="noopener">[3]</a>.</div>
     </div>
     <div class="brandBox" aria-label="Laboratory and institutional logos">
@@ -2522,7 +2522,7 @@
     const W = el.svg.viewBox.baseVal.width || el.svg.clientWidth;
     const H = el.svg.viewBox.baseVal.height || el.svg.clientHeight;
 
-    const margin = {left:60, right:18, top:36, bottom:44};
+    const margin = {left:68, right:18, top:36, bottom:50};
     const innerW = W - margin.left - margin.right;
     const innerH = H - margin.top - margin.bottom;
 
@@ -2632,7 +2632,7 @@
         x:x,
         y: margin.top + innerH + 16,
         'text-anchor':'middle',
-        'font-size':'10',
+        'font-size':'12',
         fill:'rgba(15,23,42,0.75)'
       });
       t.textContent = (xt === 0) ? '0' : xt.toFixed(2);
@@ -2643,7 +2643,7 @@
       x: margin.left + innerW/2,
       y: margin.top + innerH + 32,
       'text-anchor':'middle',
-      'font-size':'10',
+      'font-size':'13',
       fill:'rgba(15,23,42,0.9)'
     });
     xLab.textContent = 'Rotation (rad)';
@@ -2654,7 +2654,7 @@
       y: margin.top + innerH/2,
       transform: `rotate(-90 16 ${margin.top + innerH/2})`,
       'text-anchor':'middle',
-      'font-size':'10',
+      'font-size':'13',
       fill:'rgba(15,23,42,0.9)'
     });
     yLab.textContent = 'Moment (kN·m)';
@@ -2666,7 +2666,7 @@
         x: margin.left - 8,
         y: y + 4,
         'text-anchor':'end',
-        'font-size':'10',
+        'font-size':'12',
         fill:'rgba(15,23,42,0.75)'
       });
       t.textContent = yt.toFixed(0);
