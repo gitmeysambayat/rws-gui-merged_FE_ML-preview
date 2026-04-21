@@ -62,7 +62,7 @@
   }
    .workspace{
     display:grid;
-    grid-template-columns:minmax(0, 1fr) 500px;
+    grid-template-columns:minmax(0, 1fr) 620px;
     gap:10px;
     align-items:start;
   }
@@ -381,7 +381,7 @@
   .compactCard{ padding:10px 12px; }
   .compactCard .modeCardHead{ align-items:center; }
   .compactCard .small{ margin:0; }
-  .benchTableWrap{ margin-top:8px; overflow:auto; max-height:188px; border:1px solid var(--line2); border-radius:10px; }
+  .benchTableWrap{ margin-top:8px; overflow-x:auto; overflow-y:auto; max-height:96px; border:1px solid var(--line2); border-radius:10px; scrollbar-gutter:stable both-edges; }
   .benchTableWrap table{ min-width:520px; }
   .benchTableWrap thead th{ position:sticky; top:0; background:#fff; z-index:1; }
   .rightCardNote{ margin-top:6px; }
@@ -389,7 +389,7 @@
 
   @media (min-width: 1700px){
     main{ grid-template-columns: 560px minmax(0,1fr); }
-    .workspace{ grid-template-columns:minmax(0, 1fr) 500px; }
+    .workspace{ grid-template-columns:minmax(0, 1fr) 620px; }
     #plotSvg{ aspect-ratio:760 / 322; }
     .imgWrap{ height:245px; }
   }
@@ -398,8 +398,9 @@
   #feOutputCard table td, #feOutputCard table th{ padding:5px 5px; }
   #feOutputCard table td, #feOutputCard table th{ text-align:left; }
   #feOutputCard{ margin-top:0; }
-  #feOutputCard table.twoCol td.labelCell{ color:var(--muted); width:16%; }
-  #feOutputCard table.twoCol td.valCell{ text-align:right; white-space:nowrap; width:17%; }
+  #feOutputCard table.twoCol{ table-layout:fixed; width:100%; }
+  #feOutputCard table.twoCol td.labelCell{ color:var(--muted); width:8.5%; font-size:10.2px; }
+  #feOutputCard table.twoCol td.valCell{ text-align:right; white-space:nowrap; width:11.5%; font-size:10.4px; }
   #feOutputCard table.twoCol td.valCell.warn{ color:#b00020; font-weight:700; }
   #benchSummaryCard{ padding:8px 10px; }
   .benchSummaryGrid{ display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; align-items:stretch; }
@@ -1189,10 +1190,12 @@
     ];
 
     let html = '';
-    for (let i = 0; i < out.length; i += 3) {
-      const rowItems = [out[i], out[i + 1], out[i + 2]];
+    const outputPairsPerRow = 5;
+    for (let i = 0; i < out.length; i += outputPairsPerRow) {
+      const rowItems = out.slice(i, i + outputPairsPerRow);
       html += '<tr>';
-      for (const item of rowItems) {
+      for (let j = 0; j < outputPairsPerRow; j++) {
+        const item = rowItems[j];
         if (item) {
           const cls = item.warn ? 'mono valCell warn' : 'mono valCell';
           html += `<td class="labelCell">${item.lab}</td><td class="${cls}">${item.val}</td>`;
