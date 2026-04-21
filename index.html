@@ -66,10 +66,10 @@
     gap:10px;
     align-items:start;
   }
-  .workspace #benchSummaryCard, .workspace #contourCard{ grid-column:1 / -1; }
+  .workspace #benchSummaryCard, .workspace #contourCard, .workspace #feOutputCard{ grid-column:1 / -1; }
   @media (max-width: 1440px){
     .workspace{ grid-template-columns:1fr; }
-    .workspace #contourCard{ grid-column:auto; }
+    .workspace #contourCard, .workspace #feOutputCard{ grid-column:auto; }
   }
 
   .card{
@@ -381,8 +381,9 @@
   .compactCard{ padding:10px 12px; }
   .compactCard .modeCardHead{ align-items:center; }
   .compactCard .small{ margin:0; }
-  .benchTableWrap{ margin-top:8px; overflow:auto; }
+  .benchTableWrap{ margin-top:8px; overflow:auto; max-height:188px; border:1px solid var(--line2); border-radius:10px; }
   .benchTableWrap table{ min-width:520px; }
+  .benchTableWrap thead th{ position:sticky; top:0; background:#fff; z-index:1; }
   .rightCardNote{ margin-top:6px; }
 
 
@@ -396,8 +397,9 @@
   #mlBenchCard table td, #mlBenchCard table th{ padding:5px 5px; font-size:10.5px; }
   #feOutputCard table td, #feOutputCard table th{ padding:5px 5px; }
   #feOutputCard table td, #feOutputCard table th{ text-align:left; }
-  #feOutputCard table.twoCol td.labelCell{ color:var(--muted); width:32%; }
-  #feOutputCard table.twoCol td.valCell{ text-align:right; white-space:nowrap; width:18%; }
+  #feOutputCard{ margin-top:0; }
+  #feOutputCard table.twoCol td.labelCell{ color:var(--muted); width:16%; }
+  #feOutputCard table.twoCol td.valCell{ text-align:right; white-space:nowrap; width:17%; }
   #feOutputCard table.twoCol td.valCell.warn{ color:#b00020; font-weight:700; }
   #benchSummaryCard{ padding:8px 10px; }
   .benchSummaryGrid{ display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; align-items:stretch; }
@@ -414,7 +416,7 @@
   <div class="headerRow">
     <div class="titleWrap">
       <div class="title">Interactive FE database interrogation and explainable ML backbone prediction for circular Reduced Web Section connections with isolated circular web openings (7,575 FE models).</div>
-      <div class="metaLine">Research and development: Meysam Bayat under supervision of Professor Konstantinos Daniel Tsavdaridis at City St George’s, University of London. For further information refer to Bayat and Tsavdaridis (2025-2026) <a href="https://doi.org/10.1002/cepa.70170" target="_blank" rel="noopener">[1]</a> <a href="https://doi.org/10.21203/rs.3.rs-8506924/v1" target="_blank" rel="noopener">[2]</a>.</div>
+      <div class="metaLine">Research and development: Meysam Bayat under supervision of Professor Konstantinos Daniel Tsavdaridis at City St George’s, University of London. For further information refer to Bayat and Tsavdaridis (2025-2026) <a href="https://doi.org/10.3389/fbuil.2025.1592665" target="_blank" rel="noopener">[1]</a> <a href="https://doi.org/10.1002/cepa.70170" target="_blank" rel="noopener">[2]</a> <a href="https://doi.org/10.21203/rs.3.rs-8506924/v1" target="_blank" rel="noopener">[3]</a>.</div>
     </div>
     <div class="brandBox" aria-label="Laboratory and institutional logos">
       <img class="labBrand" src="3DMBC_logo.png" alt="3DMBC logo">
@@ -663,12 +665,6 @@
 
     </div>
 
-    <div class="card" id="feOutputCard">
-      <h2>FE outputs</h2>
-      <table class="twoCol">
-        <tbody id="outTable"></tbody>
-      </table>
-    </div>
   </section>
 
   <section class="workspace">
@@ -780,6 +776,13 @@
         </div>
       </div>
 </div>
+
+    <div class="card" id="feOutputCard">
+      <h2>FE outputs</h2>
+      <table class="twoCol">
+        <tbody id="outTable"></tbody>
+      </table>
+    </div>
   </section>
 </main>
 
@@ -1186,17 +1189,18 @@
     ];
 
     let html = '';
-    for (let i = 0; i < out.length; i += 2) {
-      const a = out[i];
-      const b = out[i + 1];
-      const clsA = a.warn ? 'mono valCell warn' : 'mono valCell';
-      html += `<tr><td class="labelCell">${a.lab}</td><td class="${clsA}">${a.val}</td>`;
-      if (b) {
-        const clsB = b.warn ? 'mono valCell warn' : 'mono valCell';
-        html += `<td class="labelCell">${b.lab}</td><td class="${clsB}">${b.val}</td></tr>`;
-      } else {
-        html += `<td class="labelCell"></td><td class="valCell"></td></tr>`;
+    for (let i = 0; i < out.length; i += 3) {
+      const rowItems = [out[i], out[i + 1], out[i + 2]];
+      html += '<tr>';
+      for (const item of rowItems) {
+        if (item) {
+          const cls = item.warn ? 'mono valCell warn' : 'mono valCell';
+          html += `<td class="labelCell">${item.lab}</td><td class="${cls}">${item.val}</td>`;
+        } else {
+          html += `<td class="labelCell"></td><td class="valCell"></td>`;
+        }
       }
+      html += '</tr>';
     }
     el.outTable.innerHTML = html;
 
