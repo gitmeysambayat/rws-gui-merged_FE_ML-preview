@@ -36,30 +36,33 @@
   .titleWrap{ min-width:0; flex:1 1 auto; }
   .title{ font-weight:700; font-size:15px; line-height:1.2; }
   .subtitle{ margin-top:3px; color:var(--muted); font-size:10.5px; max-width:980px; line-height:1.35; }
-  .headerMeta{ margin-top:4px; display:flex; flex-wrap:wrap; gap:4px 12px; color:var(--muted); font-size:10.5px; }
-  .aboutStrip{ margin-top:6px; padding:6px 8px; border-radius:10px; border:1px solid var(--line2); background:rgba(15,23,42,0.03); max-width:1200px; }
-  .aboutStrip .small{ line-height:1.45; }
-  .brandBox{ display:flex; align-items:flex-start; gap:10px; flex:0 0 auto; }
-  .brandBox img{ display:block; width:auto; object-fit:contain; background:#fff; }
-  .brandBox .cityBrand{ max-height:52px; }
-  .brandBox .labBrand{ max-height:38px; }
+    .metaLine{ margin-top:4px; color:var(--muted); font-size:10.3px; line-height:1.35; white-space:nowrap; }
+  .metaLine a{ color:var(--accent); }
+  .brandBox{ display:flex; align-items:center; gap:12px; flex:0 0 auto; }
+  .brandBox img{ display:block; width:auto; object-fit:contain; background:transparent; }
+  .brandBox .cityBrand{ height:66px; }
+  .brandBox .labBrand{ height:44px; }
+  #geomLine{ white-space:nowrap; font-size:10.4px; }
+  #caseGuideNote, #caseSelHint, #caseMatrix caption{ white-space:nowrap; }
+  #caseMatrix caption{ font-size:11px; }
   @media (max-width: 980px){
     .headerRow{ flex-direction:column; }
     .brandBox{ align-self:flex-start; }
+    .metaLine{ white-space:normal; }
   }
   main{
     padding:10px;
     display:grid;
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: 520px minmax(0,1fr);
     gap:10px;
     align-items:start;
   }
   @media (max-width: 1100px){
     main{ grid-template-columns: 1fr; }
   }
-  .workspace{
+   .workspace{
     display:grid;
-    grid-template-columns:minmax(0, 1.8fr) minmax(335px, 0.95fr);
+    grid-template-columns:minmax(0, 1fr) 470px;
     gap:10px;
     align-items:start;
   }
@@ -86,7 +89,7 @@
   }
   .control{ margin-bottom:7px; }
   .control-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
-  .control-head .label{ font-size:11px; color:var(--muted); }
+  .control-head .label{ font-size:10.8px; color:var(--muted); }
   .control-head .value{ font-size:11px; font-weight:700; }
   input[type="range"]{ width:100%; margin-top:4px; accent-color: var(--accent); }
   .range-foot{ display:flex; justify-content:space-between; margin-top:2px; font-size:10px; color:var(--muted); }
@@ -384,10 +387,10 @@
 
 
   @media (min-width: 1700px){
-    main{ grid-template-columns: 405px 1fr; }
-    .workspace{ grid-template-columns:minmax(0, 1.9fr) minmax(350px, 0.9fr); }
-    #plotSvg{ aspect-ratio:760 / 340; }
-    .imgWrap{ height:300px; }
+    main{ grid-template-columns: 520px minmax(0,1fr); }
+    .workspace{ grid-template-columns:minmax(0, 1fr) 470px; }
+    #plotSvg{ aspect-ratio:760 / 330; }
+    .imgWrap{ height:295px; }
   }
   #mlBenchCard .infobox, #feOutputCard .infobox{ padding:6px 8px; }
   #mlBenchCard table td, #mlBenchCard table th{ padding:5px 5px; font-size:10.5px; }
@@ -401,18 +404,12 @@
     <div class="titleWrap">
       <div class="title">Reduced Web Section explorer and FE–ML benchmark (7,575 FE models)</div>
       <div class="subtitle">Interactive FE database interrogation and explainable ML backbone prediction for circular Reduced Web Section connections with isolated circular web openings.</div>
-      <div class="headerMeta">
-        <div>Research and development: Meysam Bayat</div>
-        <div>Academic supervision: Professor Konstantinos Daniel Tsavdaridis</div>
-        <div>3DMBC, City St George’s, University of London</div>
-      </div>
-      <div class="aboutStrip">
-        <div class="small muted">For further information refer to <a href="https://doi.org/10.25383/city.31537849" target="_blank" rel="noopener">Supplementary Figures for thesis</a>.</div>
+      <div class="metaLine">Research and development: Meysam Bayat under supervision of Professor Konstantinos Daniel Tsavdaridis at City St George’s, University of London. For further information refer to Bayat and Tsavdaridis (2025) <a href="https://doi.org/10.1002/cepa.70170" target="_blank" rel="noopener">[1]</a> <a href="https://doi.org/10.21203/rs.3.rs-8506924/v1" target="_blank" rel="noopener">[2]</a>.</div>
       </div>
     </div>
     <div class="brandBox" aria-label="Laboratory and institutional logos">
       <img class="labBrand" src="3DMBC_logo.png" alt="3DMBC logo">
-      <img class="cityBrand" src="city_st_georges_logo_trimmed.png" alt="City St George’s, University of London logo">
+      <img class="cityBrand" src="city-st-georges-responsive-logo.svg" alt="City St George’s, University of London logo">
     </div>
   </div>
 </header>
@@ -472,7 +469,7 @@
 
       <div class="control">
         <div class="control-head">
-          <div class="label">Opening spacing, <span class="sym"><i>S</i>/<i>h</i></span> (%)</div>
+          <div class="label">Web opening distance from column face, <span class="sym"><i>S</i>/<i>h</i></span> (%)</div>
           <div class="value" id="valSh">-</div>
         </div>
         <input id="slSh" type="range" min="0" max="0" step="1" value="0">
@@ -486,7 +483,7 @@
 
       <div class="infobox">
         <div class="small muted" id="geomLine"></div>
-        <div class="small muted" id="steelLine" style="margin-top:2px;"></div>
+        <div id="steelLine" class="hide" aria-hidden="true"></div>
       </div>
 
       <div class="warnbox" id="warn"></div>
@@ -533,7 +530,7 @@
 
       <div class="control">
         <div class="control-head">
-          <div class="label">Opening spacing, <span class="sym"><i>S</i>/<i>h</i></span> (%)</div>
+          <div class="label">Web opening distance from column face, <span class="sym"><i>S</i>/<i>h</i></span> (%)</div>
           <div class="value" id="mlValSh">-</div>
         </div>
         <input id="mlSlSh" type="range" min="0" max="240" step="1" value="140">
@@ -562,7 +559,7 @@
       <h2>Case guide and specimen classification</h2>
       
 <table class="thesis case-matrix" id="caseMatrix">
-  <caption>Table 1.5: Parametric combinations of (<span class="sym"><i>S</i>/<i>h</i></span>) and (<span class="sym"><i>d</i><sub>o</sub>/<i>h</i></span>) in each batch of analysis</caption>
+  <caption>Parametric combinations of (<span class="sym"><i>S</i>/<i>h</i></span>) and (<span class="sym"><i>d</i><sub>o</sub>/<i>h</i></span>) in each batch of analysis</caption>
   <thead>
     <tr>
       <th style="border-right:0;"></th>
@@ -577,12 +574,12 @@
     <tr><th class="rowhdr">60</th><td class="case-cell mono" data-do="30" data-sh="60" data-case="C00">C00</td><td class="case-cell mono" data-do="35" data-sh="60" data-case="C10">C10</td><td class="case-cell mono" data-do="40" data-sh="60" data-case="C20">C20</td><td class="case-cell mono" data-do="45" data-sh="60" data-case="C30">C30</td><td class="case-cell mono" data-do="50" data-sh="60" data-case="C40">C40</td><td class="case-cell mono" data-do="55" data-sh="60" data-case="C50">C50</td><td class="case-cell mono" data-do="60" data-sh="60" data-case="C60">C60</td><td class="case-cell mono" data-do="65" data-sh="60" data-case="C70">C70</td><td class="case-cell mono" data-do="70" data-sh="60" data-case="C80">C80</td><td class="case-cell mono" data-do="75" data-sh="60" data-case="C90">C90</td></tr><tr><th class="rowhdr">80</th><td class="case-cell mono" data-do="30" data-sh="80" data-case="C01">C01</td><td class="case-cell mono" data-do="35" data-sh="80" data-case="C11">C11</td><td class="case-cell mono" data-do="40" data-sh="80" data-case="C21">C21</td><td class="case-cell mono" data-do="45" data-sh="80" data-case="C31">C31</td><td class="case-cell mono" data-do="50" data-sh="80" data-case="C41">C41</td><td class="case-cell mono" data-do="55" data-sh="80" data-case="C51">C51</td><td class="case-cell mono" data-do="60" data-sh="80" data-case="C61">C61</td><td class="case-cell mono" data-do="65" data-sh="80" data-case="C71">C71</td><td class="case-cell mono" data-do="70" data-sh="80" data-case="C81">C81</td><td class="case-cell mono" data-do="75" data-sh="80" data-case="C91">C91</td></tr><tr><th class="rowhdr">100</th><td class="case-cell mono" data-do="30" data-sh="100" data-case="C02">C02</td><td class="case-cell mono" data-do="35" data-sh="100" data-case="C12">C12</td><td class="case-cell mono" data-do="40" data-sh="100" data-case="C22">C22</td><td class="case-cell mono" data-do="45" data-sh="100" data-case="C32">C32</td><td class="case-cell mono" data-do="50" data-sh="100" data-case="C42">C42</td><td class="case-cell mono" data-do="55" data-sh="100" data-case="C52">C52</td><td class="case-cell mono" data-do="60" data-sh="100" data-case="C62">C62</td><td class="case-cell mono" data-do="65" data-sh="100" data-case="C72">C72</td><td class="case-cell mono" data-do="70" data-sh="100" data-case="C82">C82</td><td class="case-cell mono" data-do="75" data-sh="100" data-case="C92">C92</td></tr><tr><th class="rowhdr">120</th><td class="case-cell mono" data-do="30" data-sh="120" data-case="C03">C03</td><td class="case-cell mono" data-do="35" data-sh="120" data-case="C13">C13</td><td class="case-cell mono" data-do="40" data-sh="120" data-case="C23">C23</td><td class="case-cell mono" data-do="45" data-sh="120" data-case="C33">C33</td><td class="case-cell mono" data-do="50" data-sh="120" data-case="C43">C43</td><td class="case-cell mono" data-do="55" data-sh="120" data-case="C53">C53</td><td class="case-cell mono" data-do="60" data-sh="120" data-case="C63">C63</td><td class="case-cell mono" data-do="65" data-sh="120" data-case="C73">C73</td><td class="case-cell mono" data-do="70" data-sh="120" data-case="C83">C83</td><td class="case-cell mono" data-do="75" data-sh="120" data-case="C93">C93</td></tr><tr><th class="rowhdr">140</th><td class="case-cell mono" data-do="30" data-sh="140" data-case="C04">C04</td><td class="case-cell mono" data-do="35" data-sh="140" data-case="C14">C14</td><td class="case-cell mono" data-do="40" data-sh="140" data-case="C24">C24</td><td class="case-cell mono" data-do="45" data-sh="140" data-case="C34">C34</td><td class="case-cell mono" data-do="50" data-sh="140" data-case="C44">C44</td><td class="case-cell mono" data-do="55" data-sh="140" data-case="C54">C54</td><td class="case-cell mono" data-do="60" data-sh="140" data-case="C64">C64</td><td class="case-cell mono" data-do="65" data-sh="140" data-case="C74">C74</td><td class="case-cell mono" data-do="70" data-sh="140" data-case="C84">C84</td><td class="case-cell mono" data-do="75" data-sh="140" data-case="C94">C94</td></tr><tr><th class="rowhdr">160</th><td class="case-cell mono" data-do="30" data-sh="160" data-case="C05">C05</td><td class="case-cell mono" data-do="35" data-sh="160" data-case="C15">C15</td><td class="case-cell mono" data-do="40" data-sh="160" data-case="C25">C25</td><td class="case-cell mono" data-do="45" data-sh="160" data-case="C35">C35</td><td class="case-cell mono" data-do="50" data-sh="160" data-case="C45">C45</td><td class="case-cell mono" data-do="55" data-sh="160" data-case="C55">C55</td><td class="case-cell mono" data-do="60" data-sh="160" data-case="C65">C65</td><td class="case-cell mono" data-do="65" data-sh="160" data-case="C75">C75</td><td class="case-cell mono" data-do="70" data-sh="160" data-case="C85">C85</td><td class="case-cell mono" data-do="75" data-sh="160" data-case="C95">C95</td></tr><tr><th class="rowhdr">180</th><td class="case-cell mono" data-do="30" data-sh="180" data-case="C06">C06</td><td class="case-cell mono" data-do="35" data-sh="180" data-case="C16">C16</td><td class="case-cell mono" data-do="40" data-sh="180" data-case="C26">C26</td><td class="case-cell mono" data-do="45" data-sh="180" data-case="C36">C36</td><td class="case-cell mono" data-do="50" data-sh="180" data-case="C46">C46</td><td class="case-cell mono" data-do="55" data-sh="180" data-case="C56">C56</td><td class="case-cell mono" data-do="60" data-sh="180" data-case="C66">C66</td><td class="case-cell mono" data-do="65" data-sh="180" data-case="C76">C76</td><td class="case-cell mono" data-do="70" data-sh="180" data-case="C86">C86</td><td class="case-cell mono" data-do="75" data-sh="180" data-case="C96">C96</td></tr><tr><th class="rowhdr">200</th><td class="case-cell mono" data-do="30" data-sh="200" data-case="C07">C07</td><td class="case-cell mono" data-do="35" data-sh="200" data-case="C17">C17</td><td class="case-cell mono" data-do="40" data-sh="200" data-case="C27">C27</td><td class="case-cell mono" data-do="45" data-sh="200" data-case="C37">C37</td><td class="case-cell mono" data-do="50" data-sh="200" data-case="C47">C47</td><td class="case-cell mono" data-do="55" data-sh="200" data-case="C57">C57</td><td class="case-cell mono" data-do="60" data-sh="200" data-case="C67">C67</td><td class="case-cell mono" data-do="65" data-sh="200" data-case="C77">C77</td><td class="case-cell mono" data-do="70" data-sh="200" data-case="C87">C87</td><td class="case-cell mono" data-do="75" data-sh="200" data-case="C97">C97</td></tr><tr><th class="rowhdr">220</th><td class="case-cell mono" data-do="30" data-sh="220" data-case="C08">C08</td><td class="case-cell mono" data-do="35" data-sh="220" data-case="C18">C18</td><td class="case-cell mono" data-do="40" data-sh="220" data-case="C28">C28</td><td class="case-cell mono" data-do="45" data-sh="220" data-case="C38">C38</td><td class="case-cell mono" data-do="50" data-sh="220" data-case="C48">C48</td><td class="case-cell mono" data-do="55" data-sh="220" data-case="C58">C58</td><td class="case-cell mono" data-do="60" data-sh="220" data-case="C68">C68</td><td class="case-cell mono" data-do="65" data-sh="220" data-case="C78">C78</td><td class="case-cell mono" data-do="70" data-sh="220" data-case="C88">C88</td><td class="case-cell mono" data-do="75" data-sh="220" data-case="C98">C98</td></tr><tr><th class="rowhdr">240</th><td class="case-cell mono" data-do="30" data-sh="240" data-case="C09">C09</td><td class="case-cell mono" data-do="35" data-sh="240" data-case="C19">C19</td><td class="case-cell mono" data-do="40" data-sh="240" data-case="C29">C29</td><td class="case-cell mono" data-do="45" data-sh="240" data-case="C39">C39</td><td class="case-cell mono" data-do="50" data-sh="240" data-case="C49">C49</td><td class="case-cell mono" data-do="55" data-sh="240" data-case="C59">C59</td><td class="case-cell mono" data-do="60" data-sh="240" data-case="C69">C69</td><td class="case-cell mono" data-do="65" data-sh="240" data-case="C79">C79</td><td class="case-cell mono" data-do="70" data-sh="240" data-case="C89">C89</td><td class="case-cell mono" data-do="75" data-sh="240" data-case="C99">C99</td></tr>
   </tbody>
 </table>
-<div class="small muted" style="margin-top:6px;">
-  C00 to C99 are reduced web section opening cases as shown in Table 1.5. C100 is the full section (no opening).
+<div class="small muted" id="caseGuideNote" style="margin-top:6px;">
+  C00 to C99 are reduced web section opening cases as shown in the matrix above. C100 is the full section (no opening).
 </div>
 <div class="btnrow" style="margin-top:8px;">
   <button id="btnFull">Select C100 (Full section)</button>
-  <div class="small muted" id="caseSelHint" style="margin-left:10px;">Click a cell in Table 1.5 to select a case.</div>
+  <div class="small muted" id="caseSelHint" style="margin-left:10px;">Click a cell in the matrix above to select a case.</div>
 </div>
 
       <div class="divider"></div>
@@ -599,7 +596,7 @@
   <tbody>
     <tr>
       <td style="text-align:left;"><span class="sym"><i>S</i></span> and <span class="sym"><i>d</i><sub>o</sub></span></td>
-      <td style="text-align:left;">100 configurations (Table 1.5) + Solid</td>
+      <td style="text-align:left;">100 configurations + Solid</td>
       <td>101</td>
     </tr>
     <tr>
@@ -1206,8 +1203,8 @@
   function updateInfoLines(r) {
     const h = r[schema.h_mm], b = r[schema.b_mm], tw = r[schema.tw_mm], tf = r[schema.tf_mm];
     const fy = r[schema.Fy_MPa];
-    el.geomLine.innerHTML = `Section geometry (from dataset): <span class="mono">h=${fmt1(h)} mm, b=${fmt1(b)} mm, t<sub>w</sub>=${fmt1(tw)} mm, t<sub>f</sub>=${fmt1(tf)} mm</span>.`;
-    el.steelLine.innerHTML = `Steel grade detail (from dataset): <span class="mono">F<sub>y</sub>=${fmt1(fy)} MPa</span>.`;
+    el.geomLine.innerHTML = `Section geometry (from dataset): <span class="mono">h=${fmt1(h)} mm, b=${fmt1(b)} mm, t<sub>w</sub>=${fmt1(tw)} mm, t<sub>f</sub>=${fmt1(tf)} mm, F<sub>y</sub>=${fmt1(fy)} MPa</span>.`;
+    if(el.steelLine) el.steelLine.innerHTML = '';
   }
 
   function updateWarn(r) {
