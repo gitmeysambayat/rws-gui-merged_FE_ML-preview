@@ -1,0 +1,18 @@
+Standalone preview package for the merged FE+ML GUI.
+
+Repo root should contain:
+- index.html
+- xgb_model.json
+- .nojekyll
+- 3DMBC_logo.png
+- city_st_georges_logo_trimmed.png
+- favicon_3dmbc.png
+
+Optional:
+- contours/   (copy from the original repo if you want contour previews to work)
+
+Recommended preview repo name:
+rws-gui-merged_FE_ML-preview
+
+Recommended URL:
+https://gitmeysambayat.github.io/rws-gui-merged_FE_ML-preview/
