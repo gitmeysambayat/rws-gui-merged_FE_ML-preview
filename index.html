@@ -145,7 +145,7 @@
   .plot-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap; }
   .plot-title{ font-weight:700; font-size:13px; }
   .btnbar{ display:flex; gap:8px; flex-wrap:wrap; }
-  #plotSvg{ width:100%; height:auto; aspect-ratio:760 / 300; display:block; border-radius:12px; border:1px solid var(--line2); background:#fff; }
+  #plotSvg{ width:100%; height:auto; aspect-ratio:760 / 338; display:block; border-radius:12px; border:1px solid var(--line2); background:#fff; }
   .legend{ margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; }
   .legitem{ display:flex; align-items:center; gap:6px; font-size:11px; border:1px solid var(--line2); background:rgba(15,23,42,0.02); border-radius:999px; padding:3px 8px; cursor:pointer; }
   .swatch{ width:10px; height:10px; border-radius:2px; }
@@ -389,7 +389,7 @@
   @media (min-width: 1700px){
     main{ grid-template-columns: 560px minmax(0,1fr); }
     .workspace{ grid-template-columns:minmax(0, 1fr) 500px; }
-    #plotSvg{ aspect-ratio:760 / 290; }
+    #plotSvg{ aspect-ratio:760 / 322; }
     .imgWrap{ height:245px; }
   }
   #mlBenchCard .infobox, #feOutputCard .infobox{ padding:6px 8px; }
@@ -401,7 +401,7 @@
   #feOutputCard table.twoCol td.valCell.warn{ color:#b00020; font-weight:700; }
   #benchSummaryCard{ padding:8px 10px; }
   .benchSummaryGrid{ display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; align-items:stretch; }
-  .benchMetric{ border:1px solid var(--line2); border-radius:10px; background:rgba(15,23,42,0.02); padding:6px 8px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .benchMetric{ border:1px solid var(--line2); border-radius:10px; background:rgba(15,23,42,0.02); padding:6px 8px; display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:34px; }
   .benchTextRow{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px; }
   .benchTextRow > div, .benchRef{ padding:4px 6px; }
   .benchRef{ margin-top:2px; }
@@ -413,8 +413,8 @@
 <header>
   <div class="headerRow">
     <div class="titleWrap">
-      <div class="title">Reduced Web Section explorer and FE–ML benchmark (7,575 FE models): interactive FE database interrogation and explainable ML backbone prediction for circular Reduced Web Section connections with isolated circular web openings.</div>
-      <div class="metaLine">Research and development: Meysam Bayat under supervision of Professor Konstantinos Daniel Tsavdaridis at City St George’s, University of London. For further information refer to Bayat and Tsavdaridis (2025) <a href="https://doi.org/10.1002/cepa.70170" target="_blank" rel="noopener">[1]</a> <a href="https://doi.org/10.21203/rs.3.rs-8506924/v1" target="_blank" rel="noopener">[2]</a>.</div>
+      <div class="title">Interactive FE database interrogation and explainable ML backbone prediction for circular Reduced Web Section connections with isolated circular web openings (7,575 FE models).</div>
+      <div class="metaLine">Research and development: Meysam Bayat under supervision of Professor Konstantinos Daniel Tsavdaridis at City St George’s, University of London. For further information refer to Bayat and Tsavdaridis (2025-2026) <a href="https://doi.org/10.1002/cepa.70170" target="_blank" rel="noopener">[1]</a> <a href="https://doi.org/10.21203/rs.3.rs-8506924/v1" target="_blank" rel="noopener">[2]</a>.</div>
     </div>
     <div class="brandBox" aria-label="Laboratory and institutional logos">
       <img class="labBrand" src="3DMBC_logo.png" alt="3DMBC logo">
@@ -734,11 +734,11 @@
       <h2>Benchmark overview</h2>
       <div class="benchSummaryGrid">
         <div class="benchMetric">
-          <div class="small muted">Strength retention at 0.04 rad</div>
+          <div class="small muted"><span class="sym"><i>M</i><sub>0.04</sub></span> ≥ 0.8<span class="sym"><i>M</i><sub>p</sub></span></div>
           <div id="qualMp"></div>
         </div>
         <div class="benchMetric">
-          <div class="small muted">Drift-capacity benchmark using <span class="sym"><i>θ</i><sub>u</sub></span> from the 20% drop in <span class="sym"><i>M</i><sub>c</sub></span></div>
+          <div class="small muted"><span class="sym"><i>θ</i><sub>u</sub></span> ≥ 0.04</div>
           <div id="qualThetaU"></div>
         </div>
       </div>
